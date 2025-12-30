@@ -1,9 +1,4 @@
-# Virtual Environment
-.venv/
-venv/
-env/
-
-# Python
+# --- Python Defaults ---
 __pycache__/
 *.py[cod]
 *$py.class
@@ -24,22 +19,37 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+.pytest_cache/
+.coverage
+htmlcov/
 
-# IDE
+# --- Virtual Environments ---
+.venv/
+venv/
+ENV/
+env/
+
+# --- Sensitive Environment Variables ---
+# IMPORTANT: Protect your Cigna Client Secret and API keys
+.env
+.env.local
+.env.*
+secrets.json
+
+# --- Project Specific: Data Protection ---
+# IMPORTANT: Do not upload your personal health data/EOBs to GitHub
+data/
+!data/test_samples/  # Optional: Keep this to track safe, mock data only
+
+# --- IDE & OS Specific ---
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
-
-# OS
 .DS_Store
 Thumbs.db
 
-# Project specific
-hsa_data.csv
+# Data and Receipts (CRITICAL)
+data/raw/
+data/processed/
+*.pdf
+*.jpg
 *.csv
-
-# Environment variables
-.env
-.env.local

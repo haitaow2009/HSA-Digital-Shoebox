@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hsa-digital-shoebox"
+version = "0.1.0"
+authors = [
+  { name="Haitao W", email="haitaow2009@gmail.com" },
+]
+description = "A modular tool to organize and automate HSA records using healthcare APIs."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests",         # For calling the [Cigna FHIR server](https://developer.cigna.com/docs/service-apis/patient-access/getting-started)
+    "python-dotenv",    # To securely manage your [Client ID and Secret](https://developer.cigna.com/docs/service-apis/patient-access/getting-started#Getting-Started-Standard-Authorization-Code-Flow)
+    "fhir.resources",   # To handle standard [FHIR R4 resources](https://hl7.org/fhir/R4/)
+    "pypdf>=6.5.0",            # Add this for PDF extraction
+]
+
+[project.scripts]
+hsa-shoebox = "hsa_shoebox.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
