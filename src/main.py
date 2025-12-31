@@ -6,7 +6,7 @@ import logging
 from pathlib import Path
 # from hsa_shoebox.cigna_api import CignaClient
 # from hsa_shoebox.processor import DataProcessor
-from hsa_shoebox import PDFExtractor
+from hsa_shoebox import PDFExtractor, load_config
 
 # Configure logging at the top level
 logging.basicConfig(
@@ -19,18 +19,20 @@ def main():
 
     
     try:
+        input_dir, output_dir = load_config()
+        logger.info(f"Input Directory: {input_dir}, Output Directory: {output_dir}")    
+        
         # Initialize modules
         # client = CignaClient()
         # processor = DataProcessor()
-        pdf_tool = PDFExtractor()
+        pdf_tool = PDFExtractor(upload_dir=input_dir)
         
         # --- PROCESS SOURCE 1: Local PDFs ---
         # Process any PDFs manually dropped into data/raw/
-        for pdf_file in Path("data/sample").glob("*.pdf"):
+        for pdf_file in Path(input_dir).glob("*.pdf"):
             logger.info(f"Processing manual upload: {pdf_file.name}")
-            raw_text = pdf_tool.extract_text_from_file(pdf_file.name)
-            pdf_data = pdf_tool.parse_hsa_details(raw_text)
-            # You can now pass pdf_data to your processor or database
+            pdf_tool.extract_text_from_file(pdf_file.name)
+            pdf_tool.parse_hsa_details()            # You can now pass pdf_data to your processor or database
             pdf_tool.auto_log_eob()
     
         """ 

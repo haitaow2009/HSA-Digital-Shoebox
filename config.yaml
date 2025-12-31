@@ -1,0 +1,7 @@
+# Environment Toggle: "sample" or "raw"
+data_mode: "sample"
+
+paths:
+  sample: "data/sample"
+  raw: "data/raw"
+  output: "data/processed"

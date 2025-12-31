@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "hsa-digital-shoebox"
-version = "0.1.0"
+version = "0.2.0"     # Update this to match your changelog
 authors = [
   { name="Haitao W", email="haitaow2009@gmail.com" },
 ]
@@ -19,7 +19,8 @@ dependencies = [
     "requests",         # For calling the [Cigna FHIR server](https://developer.cigna.com/docs/service-apis/patient-access/getting-started)
     "python-dotenv",    # To securely manage your [Client ID and Secret](https://developer.cigna.com/docs/service-apis/patient-access/getting-started#Getting-Started-Standard-Authorization-Code-Flow)
     "fhir.resources",   # To handle standard [FHIR R4 resources](https://hl7.org/fhir/R4/)
-    "pypdf>=6.5.0",            # Add this for PDF extraction
+    "pypdf >= 6.5.0",   # Add this for PDF extraction
+    "PyYAML",           # To handle config.yaml
 ]
 
 [project.scripts]
